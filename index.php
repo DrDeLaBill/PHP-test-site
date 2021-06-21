@@ -13,8 +13,8 @@
         <div class="container">
             <div class="row">
                 <div class="col my-5">
-                    <a href="basics.php">1. Основы PHP</a>
-                    
+                    <p><a href="basics.php">1. Основы PHP</a></p>
+                    <p><a href="functions.php">2. Ветвления и функции</a></p>
                 </div>
             </div>
         </div>
