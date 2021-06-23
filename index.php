@@ -18,6 +18,7 @@
                     <p><a href="basics.php">1. Основы PHP</a></p>
                     <p><a href="functions.php">2. Ветвления и функции</a></p>
                     <p><a href="loops.php">3. Циклы и массивы</a></p>
+                    <p><a href="calculator.php">4. Калькулятор</a></p>
                 </div>
             </div>
         </div>
