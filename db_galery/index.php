@@ -14,7 +14,7 @@
   <body>
     <div class="container">
         <div class="row">
-            <h1>Галерея FS</h1>
+            <h1>Галерея БД</h1>
             <a href="../index.php">Главная</a>
             <a href="download.php">Загрузка</a>
             <?php if (isset($_COOKIE['message'])):?>
@@ -22,20 +22,33 @@
             <?php endif; ?>
         </div>
 
-            <?php $images = glob('./img/small/*'); ?>
-            <?php for($i = 0; $i < count($images); $i++): ?>
-                <?php if ($i % 4 == 0): ?>
+            <?php
+                $mysql = new mysqli('localhost', 'root', 'root', 'galery', 3306);
+
+                $images = $mysql->query("SELECT * FROM `images` ORDER BY `views` DESC");
+
+                $mysql->close();
+
+                $counter = 0;
+            ?>
+            <?php foreach($images as $image): ?>
+                <?php if ($counter % 4 == 0): ?>
                     <div class="row my-5">
                 <?php endif; ?>
                     <div class="card mx-2" style="width: 18rem;">
-                        <a href="image_page.php?image=<?php echo substr($images[$i], 11, mb_strlen($images[$i]) - 11); ?>">
-                            <img src="<?php echo substr($images[$i], 2, mb_strlen($images[$i]) - 2); ?>" class="rounded mx-auto d-block p-2">
+                        <a href="image_page.php?image=<?php echo $image['name']; ?>&type=<?php echo $image['type']; ?>">
+                            <img src="<?php echo "img/small/" . $image['name'] . '.' . $image['type']; ?>" class="rounded mx-auto d-block p-2">
                         </a>
+                        <p style="text-align: center;">
+                            <img src="static/eye.svg" style="width: 30px;">
+                            <?php echo $image['views'] ?>
+                        </p>
                     </div>
-                <?php if ($i % 4 == 3 and $i != 0 or $i == count($images) - 1): ?>
+                <?php if ($counter % 4 == 3 and $counter != 0 or $counter == $images->num_rows - 1): ?>
                     </div>
                 <?php endif; ?>
-            <?php endfor; ?>
+                <?php $counter++ ?>
+            <?php endforeach; ?>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

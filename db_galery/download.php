@@ -14,28 +14,19 @@
   <body>
     <div class="container">
         <div class="row">
-            <h1>Галерея FS</h1>
-            <a href="../index.php">Главная</a>
-            <a href="download.php">Загрузка</a>
+            <h1>Загрузить файл</h1>
+            <a href="index.php">Галерея</a>
             <?php if (isset($_COOKIE['message'])):?>
-                <p><?php echo $_COOKIE['message']; ?></p>
+              <p><? $_COOKIE['message']; ?></p>
             <?php endif; ?>
+            <div class="col col-sm-4">
+              <form method="post" enctype="multipart/form-data" class="form" action="save_image.php">
+                <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+                <input type="file" name="userfile" class="form-control py-2" />
+                <input type="submit" value="Загрузить" class="btn btn-success py-2" />
+              </form>
+            </div>
         </div>
-
-            <?php $images = glob('./img/small/*'); ?>
-            <?php for($i = 0; $i < count($images); $i++): ?>
-                <?php if ($i % 4 == 0): ?>
-                    <div class="row my-5">
-                <?php endif; ?>
-                    <div class="card mx-2" style="width: 18rem;">
-                        <a href="image_page.php?image=<?php echo substr($images[$i], 11, mb_strlen($images[$i]) - 11); ?>">
-                            <img src="<?php echo substr($images[$i], 2, mb_strlen($images[$i]) - 2); ?>" class="rounded mx-auto d-block p-2">
-                        </a>
-                    </div>
-                <?php if ($i % 4 == 3 and $i != 0 or $i == count($images) - 1): ?>
-                    </div>
-                <?php endif; ?>
-            <?php endfor; ?>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

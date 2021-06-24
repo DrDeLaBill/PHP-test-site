@@ -14,28 +14,37 @@
   <body>
     <div class="container">
         <div class="row">
-            <h1>Галерея FS</h1>
-            <a href="../index.php">Главная</a>
+            <h1>Галерея</h1>
+            <a href="index.php">Галерея</a>
             <a href="download.php">Загрузка</a>
             <?php if (isset($_COOKIE['message'])):?>
                 <p><?php echo $_COOKIE['message']; ?></p>
             <?php endif; ?>
         </div>
+        <div class="row">
+            <?php if(isset($_GET['image'])): ?>
+                <?php
 
-            <?php $images = glob('./img/small/*'); ?>
-            <?php for($i = 0; $i < count($images); $i++): ?>
-                <?php if ($i % 4 == 0): ?>
-                    <div class="row my-5">
-                <?php endif; ?>
-                    <div class="card mx-2" style="width: 18rem;">
-                        <a href="image_page.php?image=<?php echo substr($images[$i], 11, mb_strlen($images[$i]) - 11); ?>">
-                            <img src="<?php echo substr($images[$i], 2, mb_strlen($images[$i]) - 2); ?>" class="rounded mx-auto d-block p-2">
-                        </a>
-                    </div>
-                <?php if ($i % 4 == 3 and $i != 0 or $i == count($images) - 1): ?>
-                    </div>
-                <?php endif; ?>
-            <?php endfor; ?>
+                    $image = $_GET["image"];
+                    $type = $_GET["type"];
+
+                    $mysql = new mysqli('localhost', 'root', 'root', 'galery', 3306);
+
+                    $images = $mysql->query("UPDATE `images` SET `views` = `views` + 1 WHERE `name` = '$image'");
+                    $views = $mysql->query("SELECT `views` FROM `images` WHERE `name` = '$image'")->fetch_assoc();
+
+                    $mysql->close();
+
+                ?>
+                <div class="card mx-2" style="width: 100rem; text-align: center;">
+                    <img src="<?php echo "img/big/" . $image . '.' . $type; ?>" class="img-thumbnail rounded mx-auto d-block p-2">
+                    <p style="text-align: center;">
+                        <img src="static/eye.svg" style="width: 50px;">
+                        <?php echo $views['views']; ?>
+                    </p>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
