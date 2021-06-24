@@ -20,6 +20,7 @@
                     <p><a href="loops.php">3. Циклы и массивы</a></p>
                     <p><a href="calculator.php">4. Калькулятор</a></p>
                     <p><a href="authorization/index.php">5. Авторизация</a></p>
+                    <p><a href="filesystem_galery/index.php">6. Работа с файлами</a></p>
                 </div>
             </div>
         </div>
