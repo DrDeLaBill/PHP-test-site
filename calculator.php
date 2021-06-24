@@ -17,7 +17,7 @@
           <div class="col-sm my-5">
               <a href="index.php">Главная</a>
                   <?php
-                      if ($_POST['submit']) {
+                      if (isset($_POST['submit'])) {
                           $resault = NULL;
                           $firstNumber = (int) $_POST['first'];
                           $operation = $_POST['operation'];
@@ -41,14 +41,14 @@
                   <h1>Калькулятор</h1>
                   <div class="col col-sm-4">
                       <form method="post" action="">
-                          <input type="text" name="first" class="form-control my-3">
+                          <input type="number" name="first" class="form-control my-3" value="0">
                           <select name="operation" class="form-select my-3">
                               <option name="+">+</option>
                               <option name="-">-</option>
                               <option name="*">*</option>
                               <option name="/">/</option>
                           </select>
-                          <input type="text" name="second" class="form-control my-3">
+                          <input type="number" name="second" class="form-control my-3" value="0">
                           <input type="submit" value="Submit" class="btn btn-success my-3" name="submit">
                       </form>
                 </div>

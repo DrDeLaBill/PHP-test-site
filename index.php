@@ -19,6 +19,7 @@
                     <p><a href="functions.php">2. Ветвления и функции</a></p>
                     <p><a href="loops.php">3. Циклы и массивы</a></p>
                     <p><a href="calculator.php">4. Калькулятор</a></p>
+                    <p><a href="authorization/index.php">5. Авторизация</a></p>
                 </div>
             </div>
         </div>
