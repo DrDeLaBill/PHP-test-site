@@ -33,7 +33,11 @@
                                 $resault = $firstNumber * $secondNumber;
                                 break;
                             case '/':
-                                $resault = $firstNumber / $secondNumber;
+                                if ($secondNumber === 0) {
+                                    $resault = NULL;
+                                } else {
+                                    $resault = $firstNumber / $secondNumber;
+                                }
                                 break;
                           }
                       }
@@ -55,6 +59,8 @@
                   <?php
                       if ($resault !== NULL) {
                           echo "<p>{$firstNumber} {$operation} {$secondNumber} = {$resault}</p>";
+                      } elseif ($secondNumber === 0) {
+                          echo "<p>Ошибка</p>";
                       }
                   ?>
             </div>
